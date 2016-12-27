@@ -13,7 +13,7 @@ defmodule TributaryTest do
   test "stream single chunk" do
     create_widgets!(10)
 
-    stream = Repo.stream(Widget)
+    stream = Tributary.stream(Repo, Widget)
     assert Enum.count(stream) == 10
 
     names = Enum.map(stream, fn %{name: name} -> name end)
@@ -24,7 +24,7 @@ defmodule TributaryTest do
   test "stream multiple chunks" do
     create_widgets!(100)
 
-    stream = Repo.stream(Widget, chunk_size: 20)
+    stream = Tributary.stream(Repo, Widget, chunk_size: 20)
     assert Enum.count(stream) == 100
 
     names = Enum.map(stream, fn %{name: name} -> name end)
@@ -35,7 +35,7 @@ defmodule TributaryTest do
   test "stream with database options" do
     create_widgets!(100)
 
-    stream = Repo.stream(Widget, chunk_size: 20, timeout: 20_000)
+    stream = Tributary.stream(Repo, Widget, chunk_size: 20, timeout: 20_000)
     assert Enum.count(stream) == 100
 
     names = Enum.map(stream, fn %{name: name} -> name end)

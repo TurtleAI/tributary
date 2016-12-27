@@ -6,7 +6,7 @@ defmodule Tributary.Mixfile do
 
   def project do
     [app: :tributary,
-     elixir: "~> 1.2",
+     elixir: "~> 1.3",
      elixirc_paths: elixirc_paths(Mix.env),
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
@@ -33,7 +33,7 @@ defmodule Tributary.Mixfile do
   defp applications(_), do: [:ecto, :logger]
 
   defp deps do
-    [{:ecto, "~> 2.0"},
+    [{:ecto, "~> 2.1"},
      {:earmark, "~> 0.1", only: [:dev, :docs]},
      {:ex_doc, "~> 0.10", only: [:dev, :docs]},
      {:postgrex, "~> 0.12", only: [:test]}
