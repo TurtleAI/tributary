@@ -1,9 +1,7 @@
 defmodule Tributary do
-
+  require Ecto.Query
+  
   def stream(repo, query, opts \\ []) do
-    import Ecto.Query, only: [where: 3, limit: 3]
-    import Ecto.Query.API, only: [field: 2]
-
     {trib_opts, repo_opts} = Keyword.split(opts, [:initial_key, :key_name, :chunk_size])
 
     initial_key = Keyword.get(trib_opts, :initial_key, 0)
